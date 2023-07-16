@@ -1,0 +1,3 @@
+
+
+VAT_PERCENT = 9.0

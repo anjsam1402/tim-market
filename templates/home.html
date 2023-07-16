@@ -1,0 +1,28 @@
+<!-- templates/home.html -->
+{% extends 'base.html' %}
+{% block content %}
+  <h3 class="mt-2">Product Listings</h3>
+
+  <div class="row">
+    {% for product in data %}
+      <div class="col-sm-6 col-lg-4 text-center item mb-4 flex-wrap">
+        <div class="card">
+          <div class="card-body">
+            {% for category in product.category_details %}
+              <blockquote class="blockquote mb-0">
+                <footer class="blockquote-footer">
+                  <small>Category: {{ category.name }}</small>
+                </footer>
+              </blockquote>
+            {% endfor %}
+          </div>
+
+          <h3 class="text-dark"><a href="#">{{ product.name }}</a></h3>
+          {% for category in product.category_details %}
+            <p class="price">€{{ category.price }}</p>
+          {% endfor %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
