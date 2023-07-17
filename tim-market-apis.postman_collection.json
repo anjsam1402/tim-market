@@ -1,0 +1,367 @@
+{
+	"info": {
+		"_postman_id": "cbf73d51-e544-41ba-b5db-b85bb80031ea",
+		"name": "tim-market-apis",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15521642"
+	},
+	"item": [
+		{
+			"name": "add-item-to-cart",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "newuser3",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password123",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-CSRFToken",
+						"value": "TKPIMtPeReoV2ZVglMWnES7UVvpz37LXl5nXwsSK9e4yYWLVV0sNFPXWNlbeeHYu",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"product_id\": 51,\n    \"category_id\": 4,\n    \"quantity\": 9\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{tim-market}}/add-product-to-cart",
+					"host": [
+						"{{tim-market}}"
+					],
+					"path": [
+						"add-product-to-cart"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "remove-product-from-cart",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "password123",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "X-CSRFToken",
+						"value": "TKPIMtPeReoV2ZVglMWnES7UVvpz37LXl5nXwsSK9e4yYWLVV0sNFPXWNlbeeHYu",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"product_id\": 33,\n    \"category_id\": 3\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{tim-market}}/remove-product-from-cart",
+					"host": [
+						"{{tim-market}}"
+					],
+					"path": [
+						"remove-product-from-cart"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update-product-count-in-cart",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "password123",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "X-CSRFToken",
+						"value": "TKPIMtPeReoV2ZVglMWnES7UVvpz37LXl5nXwsSK9e4yYWLVV0sNFPXWNlbeeHYu",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"product_id\": 33,\n    \"category_id\": 3,\n    \"quantity\": 4,\n    \"add_flag\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{tim-market}}/update-product-count-in-cart",
+					"host": [
+						"{{tim-market}}"
+					],
+					"path": [
+						"update-product-count-in-cart"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "checkout-with-order",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "newuser3",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password123",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-CSRFToken",
+						"value": "TKPIMtPeReoV2ZVglMWnES7UVvpz37LXl5nXwsSK9e4yYWLVV0sNFPXWNlbeeHYu",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{tim-market}}/checkout-with-order",
+					"host": [
+						"{{tim-market}}"
+					],
+					"path": [
+						"checkout-with-order"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-all-products-cart",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "password123",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-CSRFToken",
+						"value": "TKPIMtPeReoV2ZVglMWnES7UVvpz37LXl5nXwsSK9e4yYWLVV0sNFPXWNlbeeHYu",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{tim-market}}/get-all-products-cart",
+					"host": [
+						"{{tim-market}}"
+					],
+					"path": [
+						"get-all-products-cart"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-all-orders",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "newuser4",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password123",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-CSRFToken",
+						"value": "TKPIMtPeReoV2ZVglMWnES7UVvpz37LXl5nXwsSK9e4yYWLVV0sNFPXWNlbeeHYu",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{tim-market}}/get-all-orders",
+					"host": [
+						"{{tim-market}}"
+					],
+					"path": [
+						"get-all-orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-all-orders-by-user",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "newuser3",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password123",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-CSRFToken",
+						"value": "TKPIMtPeReoV2ZVglMWnES7UVvpz37LXl5nXwsSK9e4yYWLVV0sNFPXWNlbeeHYu",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{tim-market}}/get-all-orders-by-user",
+					"host": [
+						"{{tim-market}}"
+					],
+					"path": [
+						"get-all-orders-by-user"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
