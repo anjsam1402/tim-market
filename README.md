@@ -11,10 +11,11 @@
 - All functionalities are accessible via REST API.
 - API to fetch all submitted orders (all and by current user).
 
+###### [Schema diagram](https://github.com/anjsam1402/tim-market/blob/master/resources/tim_market_schema.png)
+
 ###### Command to run:
 ```
 python manage.py runserver <port>
 ```
 
-###### APIs list:
-[API collection](https://github.com/anjsam1402/tim-market/blob/master/resources/tim-market-apis.postman_collection.json)
+###### [API collection](https://github.com/anjsam1402/tim-market/blob/master/resources/tim-market-apis.postman_collection.json)
