@@ -17,4 +17,4 @@ python manage.py runserver <port>
 ```
 
 ###### APIs list:
-[API collection]()
+[API collection](https://github.com/anjsam1402/tim-market/blob/master/resources/tim-market-apis.postman_collection.json)
