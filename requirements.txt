@@ -1,0 +1,6 @@
+crispy-bootstrap4==2022.1
+Django==4.2.3
+django-authtools==2.0.0
+django-crispy-forms==2.0
+djangorestframework==3.14.0
+mysqlclient==2.2.0

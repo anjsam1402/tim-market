@@ -20,9 +20,13 @@ import json
 class ProductCategoryService:
 
     """
-    Since A user can habve only one cart {for now}
-    we will create the cart when the cart is created
-    This logic should move out when cart is becoming independent
+    ProductCategory Service provides the following functionalities:
+    - all CRUD operations related to product-category (Category Table)
+    - add a product to a category, update ProductCategoryMap and
+        related price in ProductCategoryPriceMap and inventory in ProductInventoryMap
+        which take reference of product_category_id from ProductCategoryMap
+    - remove a product to a category, followed with updates in
+        ProductCategoryPriceMap and ProductInventoryMap
     """
 
     @api_view(["POST"])

@@ -18,17 +18,15 @@ class UserSerializer(serializers.ModelSerializer):
             "last_login",
         ]
 
+
 class UserResponseSerializer(serializers.Serializer):
     user_details = serializers.SerializerMethodField()
-    
+
     class Meta:
         model = User
-        fields = [
-            "user_details"
-        ]
-        
+        fields = ["user_details"]
+
     def get_user_details(self, obj):
-        user_data = UserSerializer(obj['user_details']).data
-        user_data['cart_id'] = obj['cart_id']
+        user_data = UserSerializer(obj["user_details"]).data
+        user_data["cart_id"] = obj["cart_id"]
         return user_data
-    

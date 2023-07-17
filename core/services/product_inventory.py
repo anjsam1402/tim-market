@@ -13,6 +13,12 @@ import json
 
 
 class ProductInventoryService:
+
+    """ "
+    ProductInventoryService Service provides the following functionalities:
+    - all CRUD operations related to product-inventory
+    """
+
     @api_view(["POST"])
     @is_authenticated_user
     def create_product_category_inventory(self):

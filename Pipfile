@@ -10,6 +10,9 @@ django-authtools = "*"
 mysqlclient = "*"
 django-crispy-forms = "*"
 crispy-bootstrap4 = "*"
+django-test-without-migrations = "*"
+django-nose = "*"
+black = "*"
 
 [dev-packages]
 

@@ -8,22 +8,16 @@ from ..models import OrderProductMap, OrderStatus, OrderTable, UserOrderMap
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework import serializers
 import json
-
-
-class OrderSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = OrderTable
-        fields = "__all__"
 
 
 class OrderService:
 
     """
-    Since A user can habve only one cart {for now}
-    we will create the cart when the cart is created
-    This logic should move out when cart is becoming independent
+    Order Service provides the following functionalities:
+    - all CRUD operations related to order
+    - get all the placed orders list
+    - get all the placed orders by a specific user
     """
 
     @api_view(["POST"])

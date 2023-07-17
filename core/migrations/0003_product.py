@@ -4,21 +4,20 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('core', '0002_alter_user_options'),
+        ("core", "0002_alter_user_options"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Product',
+            name="Product",
             fields=[
-                ('id', models.BigAutoField(primary_key=True, serialize=False)),
-                ('name', models.CharField(max_length=255)),
+                ("id", models.BigAutoField(primary_key=True, serialize=False)),
+                ("name", models.CharField(max_length=255)),
             ],
             options={
-                'db_table': 'product',
-                'managed': False,
+                "db_table": "product",
+                "managed": False,
             },
         ),
     ]

@@ -28,21 +28,17 @@ class ProductService:
     Service for following operations related to Product:
     - all CRUD operations
     """
-    
+
     def _get_product_category_response_details(id):
-        product_category_query_set = ProductCategoryMap.objects.filter(
-            product_id=id
-        )
-        
+        product_category_query_set = ProductCategoryMap.objects.filter(product_id=id)
+
         if not product_category_query_set.exists():
             raise Exception("Product-Category data not found")
         product_category_list = product_category_query_set
 
         product_category_response_list = []
         for product_category in product_category_list:
-            category = get_object_or_404(
-                Category, id=product_category.category_id
-            )
+            category = get_object_or_404(Category, id=product_category.category_id)
             product_category_price = get_object_or_404(
                 ProductCategoryPriceMap, product_category_id=product_category.id
             )
@@ -59,8 +55,7 @@ class ProductService:
                 ).data["product_category_details"]
             )
         return product_category_response_list
-    
-    
+
     def _create_product_category_details(product_id, req_body):
         product_category_response_list = []
         for obj in req_body["category_price_list"]:
@@ -71,14 +66,14 @@ class ProductService:
             product_category_price = ProductCategoryPriceMap.objects.create(
                 product_category_id=product_category.id, price=obj["price"]
             )
-            
+
             quantity = 0
             weight = 0
-            if 'quantity' in req_body:
+            if "quantity" in req_body:
                 quantity = obj["quantity"]
-            if 'weight' in req_body:
+            if "weight" in req_body:
                 weight = obj["weight"]
-            
+
             product_category_inventory = ProductInventoryMap.objects.create(
                 product_category_id=product_category.id,
                 quantity=quantity,
@@ -93,9 +88,8 @@ class ProductService:
                     }
                 ).data["product_category_details"]
             )
-            
+
         return product_category_response_list
-    
 
     @api_view(["POST"])
     @is_authenticated_user
@@ -103,7 +97,9 @@ class ProductService:
         try:
             body = json.loads(self.body.decode("utf-8"))
             product = Product.objects.create(name=body["name"])
-            product_category_response_list = ProductService._create_product_category_details(product.id, body)
+            product_category_response_list = (
+                ProductService._create_product_category_details(product.id, body)
+            )
 
             return Response(
                 {
@@ -128,8 +124,10 @@ class ProductService:
     def get_product(self, id):
         try:
             product = Product.objects.get(id=id)
-            product_category_response_list = ProductService._get_product_category_response_details(id)
-            
+            product_category_response_list = (
+                ProductService._get_product_category_response_details(id)
+            )
+
             return Response(
                 {
                     "status": "success",
@@ -157,9 +155,11 @@ class ProductService:
             for key in body:
                 setattr(product, key, body[key])
             product.save()
-            
-            product_category_response_list = ProductService._get_product_category_response_details(id)
-            
+
+            product_category_response_list = (
+                ProductService._get_product_category_response_details(id)
+            )
+
             return Response(
                 {
                     "status": "success",
@@ -185,14 +185,14 @@ class ProductService:
         """
         try:
             product = Product.objects.get(id=id)
-            
+
             product_category_query_set = ProductCategoryMap.objects.filter(
                 product_id=id
             )
             if not product_category_query_set.exists():
                 raise Exception("Product-Category data not found")
             product_category_list = product_category_query_set
-            
+
             for product_category in product_category_list:
                 product_category_price = get_object_or_404(
                     ProductCategoryPriceMap, product_category_id=product_category.id
@@ -203,11 +203,14 @@ class ProductService:
                 product_category_price.delete()
                 product_category_inventory.delete()
                 product_category.delete()
-            
+
             product.delete()
 
             return Response(
-                {"status": "success",  "message": "Product and category details deleted"},
+                {
+                    "status": "success",
+                    "message": "Product and category details deleted",
+                },
                 status.HTTP_202_ACCEPTED,
             )
         except Exception as e:
@@ -215,28 +218,31 @@ class ProductService:
                 {"status": "failure"}, status.HTTP_500_INTERNAL_SERVER_ERROR
             )
 
-
     @api_view(["GET"])
-    # @renderer_classes([TemplateHTMLRenderer])
+    @renderer_classes([TemplateHTMLRenderer])
     def get_all_products(self):
         try:
             products = Product.objects.all()
             response_list = []
             for product in products:
-                product_category_response_list = ProductService._get_product_category_response_details(product.id)
-                response_list.append(ProductResponseSerializer(
+                product_category_response_list = (
+                    ProductService._get_product_category_response_details(product.id)
+                )
+                response_list.append(
+                    ProductResponseSerializer(
                         {
                             "product_details": product,
                             "category_details": product_category_response_list,
                         }
-                    ).data["product_details"])
-            
+                    ).data["product_details"]
+                )
+
             return Response(
                 {
                     "status": "success",
                     "data": response_list,
                 },
-                # template_name="home.html",
+                template_name="home.html",
                 status=status.HTTP_200_OK,
             )
         except Exception as e:

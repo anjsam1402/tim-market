@@ -18,20 +18,20 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     objects = CoreUserManager()
 
-    USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['name', 'email']
+    USERNAME_FIELD = "username"
+    REQUIRED_FIELDS = ["name", "email"]
 
     class Meta:
+        # db_table = 'core_user'
         managed = False
-   #      db_table = 'core_user'
-        
+
     def get_full_name(self):
         return self.name
 
     def get_short_name(self):
         return self.name.split()[0]
-     
-     
+
+
 class Cart(models.Model):
     id = models.BigAutoField(primary_key=True)
     created_at = models.IntegerField()
@@ -39,20 +39,28 @@ class Cart(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'cart'
+        db_table = "cart"
 
 
 class CartPriceMap(models.Model):
     id = models.BigAutoField(primary_key=True)
     cart_id = models.BigIntegerField(unique=True)
-    total_price = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
-    net_total_price = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
-    vat_percent = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
-    vat_tax_price = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+    total_price = models.DecimalField(
+        max_digits=10, decimal_places=2, blank=True, null=True
+    )
+    net_total_price = models.DecimalField(
+        max_digits=10, decimal_places=2, blank=True, null=True
+    )
+    vat_percent = models.DecimalField(
+        max_digits=5, decimal_places=2, blank=True, null=True
+    )
+    vat_tax_price = models.DecimalField(
+        max_digits=10, decimal_places=2, blank=True, null=True
+    )
 
     class Meta:
         managed = False
-        db_table = 'cart_price_map'
+        db_table = "cart_price_map"
 
 
 class CartProductMap(models.Model):
@@ -64,7 +72,7 @@ class CartProductMap(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'cart_product_map'
+        db_table = "cart_product_map"
 
 
 class CartUserMap(models.Model):
@@ -75,7 +83,7 @@ class CartUserMap(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'cart_user_map'
+        db_table = "cart_user_map"
 
 
 class Category(models.Model):
@@ -84,7 +92,7 @@ class Category(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'category'
+        db_table = "category"
 
 
 class OrderProductMap(models.Model):
@@ -95,8 +103,8 @@ class OrderProductMap(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'order_product_map'
-        unique_together = (('order_id', 'product_id'),)
+        db_table = "order_product_map"
+        unique_together = (("order_id", "product_id"),)
 
 
 class OrderStatus(models.Model):
@@ -108,23 +116,31 @@ class OrderStatus(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'order_status'
+        db_table = "order_status"
 
 
 class OrderTable(models.Model):
     id = models.BigAutoField(primary_key=True)
     cart_id = models.BigIntegerField()
-    total_price = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
-    net_total_price = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
-    vat_percent = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
-    vat_tax_price = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+    total_price = models.DecimalField(
+        max_digits=10, decimal_places=2, blank=True, null=True
+    )
+    net_total_price = models.DecimalField(
+        max_digits=10, decimal_places=2, blank=True, null=True
+    )
+    vat_percent = models.DecimalField(
+        max_digits=5, decimal_places=2, blank=True, null=True
+    )
+    vat_tax_price = models.DecimalField(
+        max_digits=10, decimal_places=2, blank=True, null=True
+    )
     created_at = models.IntegerField()
     updated_at = models.IntegerField()
     description = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'order_table'
+        db_table = "order_table"
 
 
 class Product(models.Model):
@@ -133,7 +149,7 @@ class Product(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'product'
+        db_table = "product"
 
 
 class ProductCategoryMap(models.Model):
@@ -143,8 +159,8 @@ class ProductCategoryMap(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'product_category_map'
-        unique_together = (('product_id', 'category_id'),)
+        db_table = "product_category_map"
+        unique_together = (("product_id", "category_id"),)
 
 
 class ProductCategoryPriceMap(models.Model):
@@ -154,7 +170,7 @@ class ProductCategoryPriceMap(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'product_category_price_map'
+        db_table = "product_category_price_map"
 
 
 class ProductInventoryMap(models.Model):
@@ -165,7 +181,7 @@ class ProductInventoryMap(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'product_inventory_map'
+        db_table = "product_inventory_map"
 
 
 class UserOrderMap(models.Model):
@@ -175,5 +191,5 @@ class UserOrderMap(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'user_order_map'
-        unique_together = (('user_id', 'order_id'),)
+        db_table = "user_order_map"
+        unique_together = (("user_id", "order_id"),)

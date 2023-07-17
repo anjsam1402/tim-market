@@ -5,14 +5,10 @@ from core import constants
 from core.decorators import is_authenticated_user, is_user_admin, is_user_staff
 from core.enumerations import OrderStatusEnum
 from core.serializers.cart import (
-    CartPriceSerializer,
-    CartProductSerializer,
     CartResponseSerializer,
-    CartSerializer,
-    CartUserSerializer,
 )
 
-from core.serializers.order import OrderProductSerializer, OrderResponseSerializer
+from core.serializers.order import OrderResponseSerializer
 from ..models import (
     Cart,
     CartPriceMap,
@@ -37,9 +33,20 @@ import json
 class CartService:
 
     """
-    Since A user can habve only one cart {for now}
-    we will create the cart when the cart is created
-    This logic should move out when cart is becoming independent
+    CartService has the following list of operations:
+    - all CRUD Operations related to Cart.
+    - add a product to cart
+    - list all products in the cart
+    - remove a product from a cart
+    - modify the count of products in cart
+    - checkout and place order
+    - clear cart (reset cart price)
+
+    Currently this service focuses on:
+    - cart creation/deletion is followed by CartPriceMap
+        and CartProductMap (just in deletion)
+    - placing of order is not followed by payments as of now,
+        so any cart which is moved to orders is updated with status PLACED
     """
 
     def create_new_cart_object(cart_json_obj):
@@ -269,12 +276,17 @@ class CartService:
     @is_authenticated_user
     def add_product_to_cart(self):
         try:
+            print(self.body.decode("utf-8"))
+            print(self.user)
+            print("hello")
             body = json.loads(self.body.decode("utf-8"))
+            print("body")
             product_category = get_object_or_404(
                 ProductCategoryMap,
                 product_id=body["product_id"],
                 category_id=body["category_id"],
             )
+            print(self.user.id)
 
             cart_user_query_set = CartUserMap.objects.filter(user_id=self.user.id)
             if not cart_user_query_set.exists():

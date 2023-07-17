@@ -15,13 +15,16 @@ from django.utils import timezone
 class UserService:
 
     """
-    Since a user can have only one cart {for now}
-    we will do the following while creation of user :
-    - create the cart
-    - create cart and user mapping
-    - cart and initial cart-price mapping
+    User Service has the following list of operations:
+    - all CRUD Operations related to User
 
-    This logic should be moved out with scaling of the application requirement
+    Currently this service focuses on following requirements:
+    - a user can have only one cart {for now}, we will do the following while creation of user :
+        - create the cart
+        - create cart and user mapping
+        - cart and initial cart-price mapping
+
+    This logic should be moved out with scaling of the application requirement.
     """
 
     def create_cart_data(user):
@@ -30,7 +33,7 @@ class UserService:
             "created_at": created_at_in_epoch,
             "updated_at": created_at_in_epoch,
         }
-        cart = CartService.create_new_cart_object(cart_json_obj)
+        cart, _ = CartService.create_new_cart_object(cart_json_obj)
 
         cart_user = CartUserMap(cart_id=cart.id, user_id=user.id, platform="web")
         cart_user.save()
@@ -40,7 +43,6 @@ class UserService:
     def create_user(self):
         try:
             body = json.loads(self.body.decode("utf-8"))
-            # TODO: add validation
 
             if "is_staff" not in body:
                 body["is_staff"] = False

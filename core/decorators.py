@@ -11,7 +11,9 @@ def is_authenticated_user(function):
             return function(request, *args, **kwargs)
         else:
             return HttpResponseForbidden()
+
     return check_value
+
 
 def is_user_admin(function):
     @wraps(function)
@@ -21,7 +23,9 @@ def is_user_admin(function):
             return function(request, *args, **kwargs)
         else:
             return HttpResponseForbidden()
+
     return check_value
+
 
 def is_user_staff(function):
     @wraps(function)
@@ -31,4 +35,5 @@ def is_user_staff(function):
             return function(request, *args, **kwargs)
         else:
             return HttpResponseForbidden()
+
     return check_value

@@ -14,14 +14,13 @@ import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = os.path.dirname(
-    os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-q_#6j$ku2rh3r9!zytez39&^yag7ox)^&gfc7y%)-3r^nps9wa'
+SECRET_KEY = "django-insecure-q_#6j$ku2rh3r9!zytez39&^yag7ox)^&gfc7y%)-3r^nps9wa"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -32,68 +31,50 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
     #   additional apps
-    'core',
-    'rest_framework',
-    'authtools',
-
-    #   debug toolbar
-    # 'debug_toolbar',
-
-    #   allauth apps
-    # 'django.contrib.sites',
-    # 'allauth',
-    # 'allauth.account',
-    # 'allauth.socialaccount',
-
-    'crispy_forms',
-    'crispy_bootstrap4'
+    "core",
+    "rest_framework",
+    "authtools",
+    "test_without_migrations",
+    "crispy_forms",
+    "crispy_bootstrap4",
 ]
 
 MIDDLEWARE = [
     # 'debug_toolbar.middleware.DebugToolbarMiddleware',
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django.middleware.security.SecurityMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-AUTH_USER_MODEL = 'core.User'
+AUTH_USER_MODEL = "core.User"
+# TEST_RUNNER = 'core.test_runner.ManagedModelTestRunner'
+IS_TESTING = False
 
-# AUTH_USER_MODEL = 'auth.User'
 
-# AUTHENTICATION_BACKENDS = [
-#     # Needed to login by username in Django admin, regardless of `allauth`
-#     # 'django.contrib.auth.backends.ModelBackend',
-
-#     # `allauth` specific authentication methods, such as login by e-mail
-#     # 'allauth.account.auth_backends.AuthenticationBackend',
-
-# ]
-
-ROOT_URLCONF = 'timmarket.urls'
+ROOT_URLCONF = "timmarket.urls"
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [os.path.join(BASE_DIR, "templates")],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
             ],
         },
     },
@@ -105,7 +86,7 @@ INTERNAL_IPS = [
     # ...
 ]
 
-WSGI_APPLICATION = 'timmarket.wsgi.application'
+WSGI_APPLICATION = "timmarket.wsgi.application"
 
 
 # Database
@@ -118,7 +99,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.mysql",
         "USER": "root",
         "PASSWORD": "admin123",
-        "PORT": "3306"
+        "PORT": "3306",
     }
 }
 
@@ -128,16 +109,16 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
 
@@ -145,9 +126,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = "UTC"
 
 USE_I18N = True
 
@@ -162,17 +143,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static_in_env')]
+STATIC_URL = "/static/"
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static_in_env')]
 VENV_PATH = os.path.dirname(BASE_DIR)
 
-STATIC_ROOT = os.path.join(VENV_PATH, 'static_root')
+STATIC_ROOT = os.path.join(VENV_PATH, "static_root")
 
 #   allauth settings
 SITE_ID = 1
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
-APPEND_SLASH=False
+CRISPY_TEMPLATE_PACK = "bootstrap4"
+APPEND_SLASH = False
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-LOGIN_REDIRECT_URL = 'core:home'
-LOGOUT_REDIRECT_URL = 'core:home'
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+LOGIN_REDIRECT_URL = "core:home"
+LOGOUT_REDIRECT_URL = "core:home"

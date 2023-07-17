@@ -3,19 +3,18 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from core.services.user import UserService
 
 from .models import User
-        
+
 from django import forms
 from django.contrib.auth.models import Group
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.utils import timezone
 
 
-
 class RegistrationForm(forms.ModelForm):
-   #  password = forms.CharField(label='Password', widget=forms.PasswordInput)
+    #  password = forms.CharField(label='Password', widget=forms.PasswordInput)
     class Meta:
         model = User
-        fields = ('username', 'email', 'name', 'password')
+        fields = ("username", "email", "name", "password")
 
     def save(self, commit=True):
         # Save the provided password in hashed format
@@ -36,12 +35,14 @@ class RegistrationForm(forms.ModelForm):
 
 
 class UserCreationForm(forms.ModelForm):
-    password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
+    password1 = forms.CharField(label="Password", widget=forms.PasswordInput)
+    password2 = forms.CharField(
+        label="Password confirmation", widget=forms.PasswordInput
+    )
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'name', 'is_staff', 'is_superuser')
+        fields = ("username", "email", "name", "is_staff", "is_superuser")
 
     def clean_password2(self):
         # Check that the two password entries match
@@ -62,7 +63,7 @@ class UserCreationForm(forms.ModelForm):
             user.is_active = True
         if user.date_joined is None:
             user.date_joined = timezone.now()
-        
+
         if commit:
             user.save()
             UserService.create_cart_data(user)
@@ -74,10 +75,7 @@ class UserChangeForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'name', 'password', 'is_active', 'is_superuser')
+        fields = ("username", "email", "name", "password", "is_active", "is_superuser")
 
     def clean_password(self):
-        # Regardless of what the user provides, return the initial value.
-        # This is done here, rather than on the field, because the
-        # field does not have access to the initial value
         return self.initial["password"]
