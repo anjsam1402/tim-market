@@ -1,0 +1,20 @@
+# tim-market
+
+### Functional requirements of application:
+
+1. Addition and removal of products from an order.
+2. Modification of the product quantities within an order.
+3. Finalization of orders, move them for the checkout process.
+4. Pricing and tax calculation of order.
+
+##### Additional details:
+- All functionalities are accessible via REST API.
+- API to fetch all submitted orders (all and by current user).
+
+###### Command to run:
+```
+python manage.py runserver <port>
+```
+
+###### APIs list:
+[API collection]()
