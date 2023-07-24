@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "core",
     "rest_framework",
     "authtools",
+    'corsheaders',
     "test_without_migrations",
     "crispy_forms",
     "crispy_bootstrap4",
@@ -55,6 +56,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 AUTH_USER_MODEL = "core.User"
@@ -157,3 +159,10 @@ APPEND_SLASH = False
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 LOGIN_REDIRECT_URL = "core:home"
 LOGOUT_REDIRECT_URL = "core:home"
+
+ALLOWED_HOSTS=['127.0.0.1', 'localhost']
+
+CORS_ORIGIN_ALLOW_ALL = False
+
+CORS_ORIGIN_WHITELIST = ['http://127.0.0.1:3000','http://localhost:3000']
+

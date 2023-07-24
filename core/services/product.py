@@ -219,7 +219,7 @@ class ProductService:
             )
 
     @api_view(["GET"])
-    @renderer_classes([TemplateHTMLRenderer])
+    # @renderer_classes([TemplateHTMLRenderer])
     def get_all_products(self):
         try:
             products = Product.objects.all()
@@ -242,7 +242,7 @@ class ProductService:
                     "status": "success",
                     "data": response_list,
                 },
-                template_name="home.html",
+                # template_name="home.html",
                 status=status.HTTP_200_OK,
             )
         except Exception as e:
